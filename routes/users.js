@@ -1,10 +1,12 @@
+const Router = require('express-promise-router')
 const db = require('../db')
 
-app.get('/:id', (req, res, next) => {
-    db.query('SELECT * FROM users WHERE id = $1', [req.params.id], (err, result) => {
-        if (err) {
-            return next(err)
-        }
-        res.send(result.rows[0])
-    })
+const router = new Router()
+
+module.exports = router
+
+router.get('/:id', async (req, res) => {
+    const { id } = req.params
+    const { rows } = await db.query('SELECT * FROM users WHERE id = $1', [id])
+    res.send(rows[0])
 })
