@@ -5,6 +5,11 @@ const router = new Router()
 
 module.exports = router
 
+router.get('/', async (req, res) => {
+    const { rows } = await db.query('SELECT * FROM users ORDER BY id ASC')
+    res.send(rows)
+})
+
 router.get('/:id', async (req, res) => {
     const { id } = req.params
     const { rows } = await db.query('SELECT * FROM users WHERE id = $1', [id])
