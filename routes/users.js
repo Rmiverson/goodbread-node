@@ -20,16 +20,16 @@ router.get('/:id', async (req, res) => {
 
 //create user
 router.post('/', async (req, res) => {
-    const { name, email } = req.query
-    await db.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email])
+    const { username, email } = req.query
+    await db.query('INSERT INTO users (name, email) VALUES ($1, $2)', [username, email])
     res.send(`User added`)
 })
 
 //update user
 router.put('/:id', async (req, res) => {
     const { id } = req.params
-    const { name, email } = req.query
-    await db.query('UPDATE users SET name = $1, email = $2 WHERE id = $3', [name, email, id])
+    const { username, email } = req.query
+    await db.query('UPDATE users SET name = $1, email = $2 WHERE id = $3', [username, email, id])
     res.send(`User modified with ID: ${id}`)
 })
 
