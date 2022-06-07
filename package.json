@@ -1,16 +1,21 @@
 {
   "name": "goodbread-node",
   "version": "1.0.0",
-  "type": "commonjs",
+  "type": "module",
   "description": "node version of goodbread api",
   "main": "index.js",
   "scripts": {
     "serve": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db_migrate": "npx prisma migrate dev --name init"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^3.15.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.0",
     "express-promise-router": "^4.1.1",
