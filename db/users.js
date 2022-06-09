@@ -19,9 +19,7 @@ const createUser = (params) => prisma.user.create({
 
 const updateUser = (id, params) => prisma.user.updateMany({
     where: {
-        id:{
-            contains: id
-        },
+        id: id
     },
     data: {
         username: params.username,
@@ -31,16 +29,22 @@ const updateUser = (id, params) => prisma.user.updateMany({
 
 const deleteUser = (id) => prisma.user.delete({
     where: {
-        id: {
-            contains: id,
-        },
+        id: id,
     },
 })
+
+const exclude = (user, ...keys) => {
+    for (let key of keys) {
+        delete user[key]
+    }
+    return user
+}
 
 export {
     findAllUsers,
     findUserById,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    exclude
 }
