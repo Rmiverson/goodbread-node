@@ -5,7 +5,7 @@ import {
     updateUser,
     deleteUser,
     exclude 
-} from '../db/users.js'
+} from '../controllers/users.js'
 import Router from 'express-promise-router'
 
 const router = new Router()
@@ -13,6 +13,7 @@ const router = new Router()
 //get all
 router.get('/', async (req, res) => {
     const users = await findAllUsers()
+    //build a middleware to filter and return proper user info
     res.status(200).json(users)
 })
 
